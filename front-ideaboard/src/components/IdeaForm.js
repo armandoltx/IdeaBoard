@@ -13,6 +13,7 @@ class IdeaForm extends Component {
 
   handleInput = (e) => {
     // console.log(e.target.value);
+    this.props.resetNotification()
     this.setState({ [e.target.name]: e.target.value })
   }
 

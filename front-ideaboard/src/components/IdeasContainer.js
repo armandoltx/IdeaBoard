@@ -7,7 +7,8 @@ import IdeaForm from './IdeaForm';
 class IdeasContainer extends Component {
   state = {
     ideas: [],
-    editingIdeaId: null
+    editingIdeaId: null,
+    notification: ''
   }
 
   componentDidMount() {
@@ -32,7 +33,14 @@ class IdeasContainer extends Component {
     // console.log("this.state.ideas => ", this.state.ideas);
     // console.log("ideaIndex => ", ideaIndex);
     const ideas = update(this.state.ideas, { [ideaIndex]: { $set: idea } })
-    this.setState({ ideas: ideas })
+    this.setState({
+      ideas: ideas,
+      notification: 'All Changes Saved'
+    })
+  }
+
+  resetNotification =() => {
+    this.setState({ notification: '' })
   }
 
 
@@ -40,11 +48,18 @@ class IdeasContainer extends Component {
     return (
       <div className="container">
         <button className="newIdeaButton" onClick={this.addNewIdea}>Create Idea</button>
+        <span className="notification">
+          {this.state.notification}
+        </span>
         <div className="ideasContainer">
           {this.state.ideas.map((idea) => {
             if(this.state.editingIdeaId === idea.id ) {
               return(
-                <IdeaForm idea={idea} key={idea.id} updateIdea={this.updateIdea}/>
+                <IdeaForm
+                  idea={idea}
+                  key={idea.id}
+                  updateIdea={this.updateIdea}
+                  resetNotification={this.resetNotification} />
               )
 
             } else {

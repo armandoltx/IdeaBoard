@@ -20,7 +20,6 @@ class IdeaForm extends Component {
   handleBlur = () => {
     axios.put(`http://localhost:3001/api/v1/ideas/${this.props.idea.id}`, {idea: { title: this.state.title, body: this.state.body }})
     .then(response => {
-      console.log("in put => ", response)
       this.props.updateIdea(response.data)
     })
     .catch(error => console.log(error))

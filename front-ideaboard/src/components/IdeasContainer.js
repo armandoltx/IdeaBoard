@@ -44,7 +44,10 @@ class IdeasContainer extends Component {
   }
 
   enableEditing = (id) => {
-    this.setState({ editingIdeaId: id })
+    this.setState({
+      editingIdeaId: id },
+      () => { this.title.focus()
+    })
   }
 
 
@@ -63,7 +66,8 @@ class IdeasContainer extends Component {
                   idea={idea}
                   key={idea.id}
                   updateIdea={this.updateIdea}
-                  resetNotification={this.resetNotification} />
+                  resetNotification={this.resetNotification}
+                  titleRef={input => this.title = input} />
               )
 
             } else {

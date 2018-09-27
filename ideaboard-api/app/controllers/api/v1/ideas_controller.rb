@@ -11,7 +11,7 @@ module Api::V1
     end
 
     def update
-      @idea = Ideas.find(params[:id])
+      @idea = Idea.find(params[:id])
       @idea.update_attributes(idea_params)
       render json: @idea
     end

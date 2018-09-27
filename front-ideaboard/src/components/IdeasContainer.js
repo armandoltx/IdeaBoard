@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import update from 'immutability-helper';
 import Idea from './Idea';
 import IdeaForm from './IdeaForm';
 
@@ -29,9 +29,9 @@ class IdeasContainer extends Component {
 
   updateIdea = (idea) => {
     const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
-    const ideas = update(this.state.ideas, {
-      [ideaIndex]: { $set: idea }
-    })
+    // console.log("this.state.ideas => ", this.state.ideas);
+    // console.log("ideaIndex => ", ideaIndex);
+    const ideas = update(this.state.ideas, { [ideaIndex]: { $set: idea } })
     this.setState({ ideas: ideas })
   }
 
